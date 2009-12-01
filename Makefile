@@ -1,11 +1,11 @@
 all:
-	@tools/waf-light build
+	@tools/waf-light -p build
 
 all-debug:
 	@tools/waf-light -v build
 
-all-progress:
-	@tools/waf-light -p build
+all-verbose:
+	@tools/waf-light build
 
 install:
 	@tools/waf-light install
