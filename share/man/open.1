@@ -1,0 +1,12 @@
+.TH "open" 1 "16 Jun 2009" "Version 1.23.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+open - open file in its default application
+.PP
+.SS "Synopsis"
+\fCopen FILES...\fP
+.SS "Description"
+The \fCopen\fP command is used to open a file in its default application. \fCopen\fP is implemented using the \fCxdg-open\fP command if it exists, or else the \fCmimedb\fP command.
+.SS "Example"
+\fCopen *.txt\fP opens all the text files in the current directory using your system's default text editor. 
