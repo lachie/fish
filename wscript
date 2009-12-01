@@ -94,21 +94,6 @@ def configure(conf):
   #if Options.options.efence:
   #  conf.check(lib='efence', libpath=['/usr/lib', '/usr/local/lib'], uselib_store='EFENCE')
 
-  if not conf.check(lib="execinfo", libpath=['/usr/lib', '/usr/local/lib'], uselib_store="EXECINFO"):
-    if sys.platform.startswith("freebsd"):
-      fatal("Install the libexecinfo port from /usr/ports/devel/libexecinfo.")
-
-  if conf.check_cfg(package='gnutls',
-                    args='--cflags --libs',
-                    atleast_version='2.5.0',
-                    #libpath=['/usr/lib', '/usr/local/lib'],
-                    uselib_store='GNUTLS'):
-    if conf.check(lib='gpg-error',
-                  #libpath=['/usr/lib', '/usr/local/lib'],
-                  uselib_store='GPGERROR'):
-      conf.env.append_value("CCFLAGS", "-DEVCOM_HAVE_GNUTLS=1")
-      conf.env.append_value("CXXFLAGS", "-DEVCOM_HAVE_GNUTLS=1")
-
   # conf.sub_config('deps/libeio')
   # conf.sub_config('deps/libev')
 
