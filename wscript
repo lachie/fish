@@ -2,7 +2,7 @@
 import re
 import Options
 import sys, os, shutil
-from Utils import cmd_output
+from Utils import cmd_output, subst_vars
 from os.path import join, dirname, abspath
 from logging import fatal
 
@@ -161,12 +161,12 @@ def make_task(bld, name):
   task.linkflags = [
     "-lncurses"
   ]
-  task.defines = [
-    "PREFIX=L\"${PREFIX}\"",
-    "DATADIR=L\"${PREFIX}/share\"",
-    "SYSCONFDIR=L\"${PREFIX}/etc\"",
-    "LOCALEDIR=\"${PREFIX}/share/locale\""
-  ]
+  task.defines = map(lambda s: subst_vars(s, bld.env), [
+    'PREFIX=L"${PREFIX}"',
+    'DATADIR=L"${PREFIX}/share"',
+    'SYSCONFDIR=L"${PREFIX}/etc"',
+    'LOCALEDIR="${PREFIX}/share/locale"'
+  ])
   task.includes = """
     src/
   """
