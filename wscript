@@ -185,4 +185,8 @@ def build(bld):
   build_task(bld, "fish_indent")
   build_task(bld, "mimedb")
 
-  bld.install_files('${PREFIX}/share/man/man1/', 'share/man/*')
+  bld.install_files('${PREFIX}/etc/fish/',                'etc/config.fish')
+  bld.install_files('${PREFIX}/share/fish/',              'share/config.fish')
+  bld.install_files('${PREFIX}/share/fish/completions/',  'share/completions/*')
+  bld.install_files('${PREFIX}/share/fish/functions/',    'share/functions/*')
+  bld.install_files('${PREFIX}/share/man/man1/',          'share/man/*')
