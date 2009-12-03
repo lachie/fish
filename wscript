@@ -173,7 +173,7 @@ def build_task(bld, name, extra_linkflags = None):
   if extra_linkflags != None:
     task.linkflags.append(extra_linkflags)
   
-  bld.install_files('${PREFIX}/bin/', [name])
+  bld.install_files('${PREFIX}/bin/', [name], chmod = 755)
   
   task.chmod = 0755
   return task
