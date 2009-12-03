@@ -8,7 +8,7 @@ all-verbose:
 	@tools/waf-light build
 
 install:
-	@tools/waf-light install
+	@tools/waf-light -p install
 
 uninstall:
 	@tools/waf-light uninstall
