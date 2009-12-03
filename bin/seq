@@ -1,8 +1,6 @@
 #!/usr/bin/env fish
 # 
 # Fallback implementation of the seq command
-#
-# @configure_input@
 
 set -l from 1
 set -l step 1
@@ -11,7 +9,7 @@ set -l to 1
 function _ -d "Alias for the gettext command"
 	printf "%s" $argv
 end
-if test 1 = "@HAVE_GETTEXT@"
+if test ! -z (which gettext)
 	if which gettext ^/dev/null >/dev/null
 		function _ -d "Alias for the gettext command"
 			gettext fish $argv

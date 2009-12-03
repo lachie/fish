@@ -3,13 +3,15 @@
 # common helper functions for the command completions. All actual
 # completions are located in the completions subdirectory.
 #
-# @configure_input@
 
 #
 # Set default field separators
 #
 
 set -g IFS \n\ \t
+
+# The install prefix the one containing bin/fish.
+set -l install_prefix (echo (which fish) | sed 's/\/bin\/fish$//')
 
 #
 # Set default search paths for completions and shellscript functions
@@ -24,33 +26,33 @@ end
 
 # These are used internally by fish in various places
 if not set -q __fish_datadir
-	set -g __fish_datadir @datadir@/fish
+	set -g __fish_datadir $install_prefix/share/fish
 end
 
 if not set -q __fish_sysconfdir
-	set -g __fish_sysconfdir @sysconfdir@/fish
+	set -g __fish_sysconfdir $install_prefix/etc/fish
 end
 
 # Set up function and completion paths. Make sure that the fish
 # default functions/completions are included in the respective path.
 
 if not set -q fish_function_path 
-	set -U fish_function_path $configdir/fish/functions    @sysconfdir@/fish/functions    @datadir@/fish/functions 
+	set -U fish_function_path $configdir/fish/functions    $install_prefix/etc/fish/functions    $install_prefix/share/fish/functions 
 end
 
-if not contains @datadir@/fish/functions $fish_function_path 
-	set fish_function_path[-1] @datadir@/fish/functions 
+if not contains $install_prefix/share/fish/functions $fish_function_path
+	set fish_function_path[-1] $install_prefix/share/fish/functions
 end
 
 if not set -q fish_complete_path 
-	set -U fish_complete_path $configdir/fish/completions  @sysconfdir@/fish/completions  @datadir@/fish/completions 
+	set -U fish_complete_path $configdir/fish/completions  $install_prefix/etc/fish/completions  $install_prefix/share/fish/completions 
 end
 
-if not contains @datadir@/fish/completions $fish_complete_path 
-	set fish_complete_path[-1] @datadir@/fish/completions 
+if not contains $install_prefix/share/fish/completions $fish_complete_path
+	set fish_complete_path[-1] $install_prefix/share/fish/completions
 end
 
-set __fish_help_dir @docdir@
+set __fish_help_dir $install_prefix/share/doc/
 
 #
 # This is a Solaris-specific test to modify the PATH so that
@@ -72,12 +74,12 @@ end
 # want this even for text-only terminals.
 #
 
-set -l path_list /bin /usr/bin /usr/X11R6/bin /usr/local/bin @prefix@/bin @optbindirs@
+set -l path_list /usr/local/bin /usr/bin /bin /usr/X11/bin $install_prefix/bin
 
 # Root should also have the sbin directories in the path
 switch $USER
 	case root
-	set path_list $path_list /sbin /usr/sbin /usr/local/sbin @prefix@/sbin
+	set path_list $path_list /usr/local/sbin /usr/sbin /sbin $install_prefix/bin
 end
 
 for i in $path_list
