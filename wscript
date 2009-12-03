@@ -197,6 +197,7 @@ def build(bld):
   build_task(bld, "fish_indent")
   build_task(bld, "mimedb")
   build_task(bld, "set_color")
+  bld.install_files('${PREFIX}/bin/', 'bin/seq', chmod = 755)
 
   bld.install_files('${PREFIX}/etc/fish/',                'etc/config.fish')
   bld.install_files('${PREFIX}/share/fish/',              'share/config.fish')
