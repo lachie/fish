@@ -1,14 +1,14 @@
 all:
-	@tools/waf-light -p build
+	@env WAFCACHE=build/cache/ tools/waf-light -p build
 
 all-debug:
-	@tools/waf-light -v build
+	@env WAFCACHE=build/cache/ tools/waf-light -v build
 
 all-verbose:
-	@tools/waf-light build
+	@env WAFCACHE=build/cache/ tools/waf-light build
 
 install:
-	@tools/waf-light -p install
+	@env WAFCACHE=build/cache/ tools/waf-light -p install
 
 uninstall:
 	@tools/waf-light uninstall

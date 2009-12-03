@@ -93,6 +93,10 @@ sources_for_tasks = {
   """
 }
 
+def mkdir_p(dir):
+  if not os.path.exists (dir):
+    os.makedirs (dir)
+
 def set_options(opt):
   opt.tool_options('compiler_cc')
   opt.tool_options('misc')
@@ -104,6 +108,8 @@ def set_options(opt):
                 )
 
 def configure(conf):
+  mkdir_p('build/cache/')
+
   conf.check_tool('compiler_cc')
 
   conf.env["USE_DEBUG"] = Options.options.debug
