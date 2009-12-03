@@ -84,6 +84,12 @@ sources_for_tasks = {
     src/xdgmimeparent.c
     src/wutil.c
     src/common.c
+  """,
+  'set_color': """
+    src/set_color.c
+    src/print_help.c
+    src/common.c
+    src/wutil.c
   """
 }
 
@@ -184,6 +190,7 @@ def build(bld):
   build_task(bld, "fish_pager", "-liconv")
   build_task(bld, "fish_indent")
   build_task(bld, "mimedb")
+  build_task(bld, "set_color")
 
   bld.install_files('${PREFIX}/etc/fish/',                'etc/config.fish')
   bld.install_files('${PREFIX}/share/fish/',              'share/config.fish')
