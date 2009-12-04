@@ -185,7 +185,7 @@ def build_task(bld, name, extra_linkflags = None):
   if extra_linkflags != None:
     task.linkflags.append(extra_linkflags)
   
-  bld.install_files('${PREFIX}/bin/', [name], chmod = 755)
+  bld.install_files('${PREFIX}/bin/', [name], chmod = 0755)
   
   task.chmod = 0755
   return task
@@ -197,7 +197,7 @@ def build(bld):
   build_task(bld, "fish_indent")
   build_task(bld, "mimedb")
   build_task(bld, "set_color")
-  bld.install_files('${PREFIX}/bin/', 'bin/seq', chmod = 755)
+  bld.install_files('${PREFIX}/bin/', 'bin/seq', chmod = 0755)
 
   bld.install_files('${PREFIX}/etc/fish/',                'etc/config.fish')
   bld.install_files('${PREFIX}/share/fish/',              'share/config.fish')
