@@ -174,13 +174,13 @@
 #define PACKAGE_NAME "fish"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "fish 1.23.1"
+#define PACKAGE_STRING "fish 1.23.1-noc"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "fish"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.23.1"
+#define PACKAGE_VERSION "1.23.1-noc"
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
@@ -202,6 +202,8 @@
 
 /* Macro to enable additional prototypes under Solaris */
 /* #undef __EXTENSIONS__ */
+
+#define DISABLE_CARET_REDIRECTION 1
 
 #if __GNUC__ >= 3
 #define __warn_unused __attribute__ ((warn_unused_result))

@@ -130,6 +130,11 @@ def configure(conf):
   # conf_subproject(conf, 'deps/udns', './configure')
 
   conf.define("HAVE_CONFIG_H", 1)
+  conf.define("DISABLE_CARET_REDIRECTION", 1)
+
+
+  # conf.check_cc
+
 
 
   headers = ['getopt.h', 'termio.h', 'sys/resource.h', 'term.h', 'ncurses/term.h', 'ncurses.h', 'curses.h', 'stropts.h', 'siginfo.h', 'sys/select.h', 'sys/ioctl.h', 'sys/termios.h', 'libintl.h', 'execinfo.h']

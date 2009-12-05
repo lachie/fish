@@ -47,7 +47,11 @@ segments.
 /**
    Characters that separate tokens. They are ordered by frequency of occurrence to increase parsing speed.
 */
+#ifdef DISABLE_CARET_REDIRECTION
+#define SEP L" \n|\t;#\r<>&"
+#else
 #define SEP L" \n|\t;#\r<>^&"
+#endif
 
 /**
    Maximum length of a string containing a file descriptor number
@@ -424,8 +428,12 @@ static void read_redirect( tokenizer *tok, int fd )
 {
 	int mode = -1;
 
+#ifdef DISABLE_CARET_REDIRECTION
+	if(*tok->buff == L'>')
+#else
 	if( (*tok->buff == L'>') ||
 		(*tok->buff == L'^') )
+#endif
 	{
 		tok->buff++;
 		if( *tok->buff == *(tok->buff-1) )
@@ -608,9 +616,11 @@ void tok_next( tokenizer *tok )
 		case L'<':
                         read_redirect( tok, 0 );
 			return;
+#ifndef DISABLE_CARET_REDIRECTION
 		case L'^':
                         read_redirect( tok, 2 );
 			return;
+#endif
 
 		default:
 		{
@@ -623,7 +633,9 @@ void tok_next( tokenizer *tok )
 
 				switch( *(tok->buff))
 				{
+#ifndef DISABLE_CARET_REDIRECTION
 					case L'^':
+#endif
 					case L'>':
 					case L'<':
 						read_redirect( tok, fd );
