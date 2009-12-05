@@ -21,7 +21,7 @@ function prevd --description "Move back in the directory history"
 				printf (_ "%s: Unknown option %s\n" ) prevd $argv[$i]
 				return 1
 			case '*'
-				if test $argv[$i] -ge 0 ^/dev/null
+				if test $argv[$i] -ge 0 2>/dev/null
 					set times $argv[$i]
 				else
 					printf (_ "The number of positions to skip must be a non-negative integer\n")
@@ -50,7 +50,7 @@ function prevd --description "Move back in the directory history"
 	end
 
 	# Set direction for 'cd -'
-	if test $code = 0 ^/dev/null
+	if test $code = 0 2>/dev/null
 		set -g __fish_cd_direction next
 	end
 

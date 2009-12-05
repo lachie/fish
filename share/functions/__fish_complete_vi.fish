@@ -3,7 +3,7 @@
 function __fish_complete_vi -d "Compleletions for vi and its aliases"
 
 	set -l is_vim
-	command vi --version >/dev/null ^/dev/null; and set is_vim vim
+	command vi --version >/dev/null 2>/dev/null; and set is_vim vim
 	
 	set -l cmds -c $argv
 

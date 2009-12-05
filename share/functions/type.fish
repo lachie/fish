@@ -106,7 +106,7 @@ function type --description "Print the type of a command"
 
 		end
 
-		set -l path (which $i ^/dev/null)
+		set -l path (which $i 2>/dev/null)
 		if test -x (echo $path)
 			set res 0
 			set found 1

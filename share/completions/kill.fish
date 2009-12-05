@@ -2,7 +2,7 @@
 
 set -l signals
 
-if kill -L ^/dev/null >/dev/null
+if kill -L 2>/dev/null >/dev/null
 
 	# Debian and some related systems use 'kill -L' to write out a numbered list 
 	# of signals. Use this to complete on both number _and_ on signal name.

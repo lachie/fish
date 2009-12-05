@@ -64,7 +64,7 @@ function __fish_config_interactive -d "Initializations that should be performed 
 
 					printf (_ "\nWARNING\n\nThe location for fish configuration files has changed to %s.\nYour old files have been moved to this location.\nYou can change to a different location by changing the value of the variable \$XDG_CONFIG_HOME.\n\n") $configdir
 
-				end ^/dev/null
+				end 2>/dev/null
 			end
 		end
 
@@ -177,14 +177,14 @@ function __fish_config_interactive -d "Initializations that should be performed 
 	function __fish_repaint --on-variable fish_color_cwd --description "Event handler, repaints the prompt when fish_color_cwd changes"
 		if status --is-interactive
 			set -e __fish_prompt_cwd
-			commandline -f repaint ^/dev/null
+			commandline -f repaint 2>/dev/null
 		end
 	end
 
 	function __fish_repaint_root --on-variable fish_color_cwd_root --description "Event handler, repaints the prompt when fish_color_cwd_root changes"
 		if status --is-interactive
 			set -e __fish_prompt_cwd
-			commandline -f repaint ^/dev/null
+			commandline -f repaint 2>/dev/null
 		end
 	end
 
@@ -206,7 +206,7 @@ function __fish_config_interactive -d "Initializations that should be performed 
 	
 	# Reload keybindings when binding variable change
 	function __fish_reload_key_bindings -d "Reload keybindings when binding variable change" --on-variable fish_key_bindings
-		eval $fish_key_bindings ^/dev/null
+		eval $fish_key_bindings 2>/dev/null
 	end 
 
 	# Load keybindings

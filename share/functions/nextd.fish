@@ -21,7 +21,7 @@ function nextd --description "Move forward in the directory history"
 				printf (_ "%s: Unknown option %s\n" ) nextd $argv[$i]
 				return 1
 			case '*'
-				if test $argv[$i] -ge 0 ^/dev/null
+				if test $argv[$i] -ge 0 2>/dev/null
 					set times $argv[$i]
 				else
 					printf (_ "%s: The number of positions to skip must be a non-negative integer\n" ) nextd
@@ -50,7 +50,7 @@ function nextd --description "Move forward in the directory history"
 	end
 
 	# Set direction for 'cd -'
-	if test $code = 0 ^/dev/null
+	if test $code = 0 2>/dev/null
 		set -g __fish_cd_direction prev
 	end
 
