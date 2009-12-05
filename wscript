@@ -131,6 +131,23 @@ def configure(conf):
 
   conf.define("HAVE_CONFIG_H", 1)
 
+
+  headers = ['getopt.h', 'termio.h', 'sys/resource.h', 'term.h', 'ncurses/term.h', 'ncurses.h', 'curses.h', 'stropts.h', 'siginfo.h', 'sys/select.h', 'sys/ioctl.h', 'sys/termios.h', 'libintl.h', 'execinfo.h']
+
+  for header in headers:
+    defname = re.sub('[./]+','_',("HAVE_%s" % header)).upper()
+    conf.check_cc(header_name=header, define_name=defname)
+
+  # TODO keep translating these:
+  conf.check_cc(function_name='backtrace', mandatory=1, header_name='execinfo.h')
+
+#AC_CHECK_FUNCS( wcsdup wcsndup wcslen wcscasecmp wcsncasecmp fwprintf )
+#AC_CHECK_FUNCS( futimes wcwidth wcswidth wcstok fputwc fgetwc )
+#AC_CHECK_FUNCS( wcstol wcslcat wcslcpy lrand48_r killpg gettext )
+#AC_CHECK_FUNCS( dcgettext backtrace backtrace_symbols sysconf )
+
+  # TODO make fish use waf config.h
+
   conf.env.append_value("CCFLAGS", "-DX_STACKSIZE=%d" % (1024*64))
 
   # LFS
